@@ -1,0 +1,19 @@
+*{
+	margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    min-height: 100%vh;
+}
+
+body{
+	background-color: #e6e6e6;
+}
+
+.bx{
+	box-shadow: 2px 2px 18px rgba(0,0,0,0.2);
+}
+
+.card-border{
+	box-shadow: 2px, 2px, 12px rgba(0,0,0,0.2);
+	border: 0px;
+}

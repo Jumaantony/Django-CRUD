@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Employees {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="row mt-3">
+            <div class="col-lg-3 col-md-3">
+
+              <div class="list-group small">
+                <div class="list-group-item active"> Employee Data</div>
+                <a class="list-group-item" href="employee-list.html" data-toggle="modal" data-target="#add_employee">Add Employee</a>
+                <a class="list-group-item" href="">View All Employee</a>
+              </div>
+
+            </div>
+
+            <div class="col-lg-9 col-md-9">
+              <table class="table table-striped table-hover bg-light">
+                <tr class="table-dark ">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email-ID</th>
+                  <th>Details</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+
+                <tr>
+                  <td>1</td>
+                  <td>Antonio Jumio</td>
+                  <td>jumio@gmail.com</td>
+                  <td><a href="" data-toggle="modal" data-target="#employee-details1"  class="btn btn-info btn-sm btn-block"> Details </a></td>
+                  <td><a href="" data-toggle="modal" data-target="#employee-edit-details1" class="btn btn-warning btn-sm btn-block">Edit</a></td>
+                  <td><a href="" class="btn btn-danger btn-sm btn-block" onclick="confirm('Are you Sure you want to Delete \' Antonio Jumio\' ?');">Delete</a></td>
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td>Antonio Jumio</td>
+                  <td>jumio@gmail.com</td>
+                  <td><a href=""data-toggle="modal" data-target="#employee-details" class="btn btn-info btn-sm btn-block"> Details </a></td>
+                  <td><a href="" class="btn btn-warning btn-sm btn-block">Edit</a></td>
+                  <td><a href="" class="btn btn-danger btn-sm btn-block" >Delete</a></td>
+                </tr>
+
+                <tr>
+                  <td>3</td>
+                  <td>Antonio Jumio</td>
+                  <td>jumio@gmail.com</td>
+                  <td><a href=""data-toggle="modal" data-target="#employee-details" class="btn btn-info btn-sm btn-block"> Details </a></td>
+                  <td><a href="" class="btn btn-warning btn-sm btn-block">Edit</a></td>
+                  <td><a href="" class="btn btn-danger btn-sm btn-block">Delete</a></td>
+                </tr>
+
+                <tr>
+                  <td>1</td>
+                  <td>Antonio Jumio</td>
+                  <td>jumio@gmail.com</td>
+                  <td><a href=""data-toggle="modal" data-target="#employee-details" class="btn btn-info btn-sm btn-block"> Details </a></td>
+                  <td><a href="" class="btn btn-warning btn-sm btn-block">Edit</a></td>
+                  <td><a href="" class="btn btn-danger btn-sm btn-block">Delete</a></td>
+                </tr>
+
+              </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Add Employee Modal -->
+    <div class="modal fade" id="add_employee" tabindex="-1" aria-labelledby="add_employee" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form>
+              <div class="mb-3">
+                <input type="date" name="" class="form-control form-control-sm" required>
+              </div>
+
+              <div class="mb-3">
+                <input type="text" name="" class="form-control form-control-sm" placeholder="Employee Name" required>
+              </div>
+
+              <div class="mb-3">
+                <input type="email" name="" class="form-control form-control-sm" placeholder="Employee Email-ID" required>
+              </div>
+
+              <div class="mb-3">
+                <input type="tel" name="" class="form-control form-control-sm" placeholder="Employee Phone Number" required>
+              </div>
+
+              <div class="mb-3">
+                <select class="form-control form-control-sm">
+                  <option value="UX-UI">UX-UI</option>
+                  <option value="Web Designer">Web-designer</option>
+                  <option value="Data Analyst">Data analyst</option>
+                  <option value="App developer">App Developer</option>
+                  <option value="Network Administrator">Network Administartor</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <button type="submit" class="btn btn-sm btn-success btn-block">Edit Employee Details </button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div class="modal fade" id="employee-details1" tabindex="-1" aria-labelledby="employee-details1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">EMPLOYEE DETAILS</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <table class="table table-bordered">
+            <tr>
+              <th>ID</th>
+              <td>1</td>
+            </tr>
+
+            <tr>
+              <th>Date Joined</th>
+              <td>23rd October 2020</td>
+            </tr>
+
+            <tr>
+              <th>Name</th>
+              <td>Antonio Jumio</td>
+            </tr>
+
+            <tr>
+              <th>Email</th>
+              <td>jumio@gmail.com</td>
+            </tr>
+
+            <tr>
+              <th>Phone Number</th>
+              <td>9826875520014856</td>
+            </tr>
+
+            <tr>
+              <th>Job</th>
+              <td>Web Developer</td>
+            </tr>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+     <!--Edit  Details Modal -->
+    <div class="modal fade" id="employee-edit-details1" tabindex="-1" aria-labelledby="add_employee" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <form>
+                  <div class="mb-3">
+                    <input type="text" name="" class="form-control form-control-sm" required value="23 October 2020">
+                  </div>
+
+                  <div class="mb-3">
+                    <input type="text" name="" class="form-control form-control-sm" required value="Antonio Jumio">
+                  </div>
+
+                  <div class="mb-3">
+                    <input type="email" name="" class="form-control form-control-sm"  required value="jumio@gmail.com">
+                  </div>
+
+                  <div class="mb-3">
+                    <input type="tel" name="" class="form-control form-control-sm"  required value="985122871649846589465511688">
+                  </div>
+
+                  <div class="mb-3">
+                    <input type="tel" name="" class="form-control form-control-sm"  required value="Web-designer">
+                  </div>
+
+                  <div class="mb-3">
+                    <button type="submit" class="btn btn-sm btn-success btn-block">Add New Employee</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock %}
