@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -24,23 +25,20 @@
     						<p class="card-text small text-muted">
     							Login with username & password
     						</p>
-    						<form>
-    							<div class="mb-3">
-    								<input class="form-control form-control-sm" type="text" placeholder="username" required=""></input>
-    							</div>
+							{% if form.errors %}
+								<div class="alert alert-warning" role="alert">
+  									Your username and password did not match
+								</div>
+							{% endif %}
+    						<form method="post" action="{% url 'EmployeeMgt:login' %}">
 
-    							<div class="mb-3">
-    								<input class="form-control form-control-sm" type="password" placeholder="password" required=""></input>
-    							</div>
+								{{ form |crispy }}
+								{% csrf_token %}
 
-    							<!-- sign in button.. use when working with the backend
-
-    								<div class="mb-3">
-    									<input class="btn btn-sm btn-success btn-block" type="" value="Sign in"></input>
-    								</div> -->
-
-    							<a href="{% url 'EmployeeMgt:dash' %}" class="btn btn-sm btn-success btn-block">Sign
-									in</a>
+								<input type="hidden" name="next" value="{{ next }}" />
+								<br>
+								<input class="btn btn-sm btn-success btn-block mb-3" type="submit"
+											   value="Sign in"></input>
     						</form>
     					</div>
     				</div>
