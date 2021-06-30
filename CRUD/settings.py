@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    # bootstrap modal
+    'bootstrap_modal_forms',
+    'widget_tweaks'
 ]
 
 # crispy forms
@@ -134,11 +137,13 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 LOGIN_REDIRECT_URL = 'EmployeeMgt:dash'
-LOGIN_URL = 'EmployeeMgt:login'
-LOGOUT_URL = 'EmployeeMgt:logout'
+LOGOUT_REDIRECT_URL = 'EmployeeMgt:login'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 
 
