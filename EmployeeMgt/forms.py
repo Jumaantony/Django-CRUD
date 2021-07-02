@@ -11,4 +11,4 @@ class LoginForm(forms.Form):
 class EmployeeModelForm(BSModalModelForm):
     class Meta:
         model = Employee
-        fields = ['ID', 'Date_of_Employement', 'Name', 'Email', 'Phone_Number', 'Job']
+        fields = ('ID', 'Date_of_Employement', 'Name', 'Email', 'Phone_Number', 'Job')

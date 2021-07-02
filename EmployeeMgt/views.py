@@ -51,7 +51,7 @@ class AddEmployeeView(LoginRequiredMixin, BSModalCreateView):
     template_name = 'add_employee.html'
     form_class = EmployeeModelForm
     success_message = 'Employee Added Successfully'
-    success_url = reverse_lazy('employee-list.html')
+    success_url = reverse_lazy('employeelist')
 
 
 @login_required
