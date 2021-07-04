@@ -21,6 +21,7 @@
 
             </div>
 
+         
             <div class="col-lg-9 col-md-9">
               <table class="table table-striped table-hover bg-light">
                 <tr class="table-dark ">
@@ -31,46 +32,24 @@
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
-
+              {% for employee in employees %}
                 <tr>
-                  <td>1</td>
-                  <td>Antonio Jumio</td>
-                  <td>jumio@gmail.com</td>
-                  <td><a href="" data-toggle="modal" data-target="#employee-details1"  class="btn btn-info btn-sm btn-block"> Details </a></td>
+                  <td>{{ employee.ID }}</td>
+                  <td>{{ employee.Name }}</td>
+                  <td>{{ employee.Email }}</td>
+
+                  <td><a href="{% url 'EmployeeMgt:employee_detail' %}" data-toggle="modal"
+                         data-target="#employee-details1"
+                         class="btn btn-info btn-sm btn-block"> Details </a></td>
                   <td><a href="" data-toggle="modal" data-target="#employee-edit-details1" class="btn btn-warning btn-sm btn-block">Edit</a></td>
+
                   <td><a href="" class="btn btn-danger btn-sm btn-block" onclick="confirm('Are you Sure you want to Delete \' Antonio Jumio\' ?');">Delete</a></td>
                 </tr>
-
-                <tr>
-                  <td>2</td>
-                  <td>Antonio Jumio</td>
-                  <td>jumio@gmail.com</td>
-                  <td><a href=""data-toggle="modal" data-target="#employee-details" class="btn btn-info btn-sm btn-block"> Details </a></td>
-                  <td><a href="" class="btn btn-warning btn-sm btn-block">Edit</a></td>
-                  <td><a href="" class="btn btn-danger btn-sm btn-block" >Delete</a></td>
-                </tr>
-
-                <tr>
-                  <td>3</td>
-                  <td>Antonio Jumio</td>
-                  <td>jumio@gmail.com</td>
-                  <td><a href=""data-toggle="modal" data-target="#employee-details" class="btn btn-info btn-sm btn-block"> Details </a></td>
-                  <td><a href="" class="btn btn-warning btn-sm btn-block">Edit</a></td>
-                  <td><a href="" class="btn btn-danger btn-sm btn-block">Delete</a></td>
-                </tr>
-
-                <tr>
-                  <td>1</td>
-                  <td>Antonio Jumio</td>
-                  <td>jumio@gmail.com</td>
-                  <td><a href=""data-toggle="modal" data-target="#employee-details" class="btn btn-info btn-sm btn-block"> Details </a></td>
-                  <td><a href="" class="btn btn-warning btn-sm btn-block">Edit</a></td>
-                  <td><a href="" class="btn btn-danger btn-sm btn-block">Delete</a></td>
-                </tr>
+              {% endfor %}
 
               </table>
             </div>
-
+          
         </div>
     </div>
 
@@ -78,7 +57,7 @@
     <div class="modal fade" id="add_employee" role="dialog" tabindex="-1" aria-labelledby="add_employee" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-
+              {% include 'add_employee.html' %}
         </div>
       </div>
     </div>
@@ -87,46 +66,7 @@
     <!-- Details Modal -->
     <div class="modal fade" id="employee-details1" tabindex="-1" aria-labelledby="employee-details1" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="employee-details">EMPLOYEE DETAILS</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <table class="table table-bordered">
-            <tr>
-              <th>ID</th>
-              <td>1</td>
-            </tr>
-
-            <tr>
-              <th>Date Joined</th>
-              <td>23rd October 2020</td>
-            </tr>
-
-            <tr>
-              <th>Name</th>
-              <td>Antonio Jumio</td>
-            </tr>
-
-            <tr>
-              <th>Email</th>
-              <td>jumio@gmail.com</td>
-            </tr>
-
-            <tr>
-              <th>Phone Number</th>
-              <td>9826875520014856</td>
-            </tr>
-
-            <tr>
-              <th>Job</th>
-              <td>Web Developer</td>
-            </tr>
-
-          </table>
-        </div>
+        {% include 'employee_detail.html' %}
       </div>
     </div>
 
@@ -183,19 +123,5 @@
     <script type="text/javascript" src="{% static '/js/jquery.bootstrap.modal.forms.js' %}"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    
-    <script language="JavaScript" type="text/javascript">
-      // functions for modals
-      window.$(function (){
-
-        // create employee button
-        $("#create-employee").modalForm({
-        formURL: "{% url 'EmployeeMgt:add_employee' %}",
-        modalID: "#add_employee"
-        });
-
-      });
-
-    </script>
 
 {% endblock %}

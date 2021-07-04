@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Employee
-from bootstrap_modal_forms.generic import BSModalCreateView
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalReadView
 
 
 # Create your views here.
@@ -29,12 +29,12 @@ def user_login(request):
                 return HttpResponse('invalid Login')
     else:
         form = LoginForm()
-    return render(request, 'account/login.html', {'form': form})
+    return render(request, 'registration/login.html', {'form': form})
 
 
 def logout_view(request):
     logout(request)
-    return render(request, 'account/login.html')
+    return render(request, 'registration/login.html')
 
 
 @login_required
@@ -44,14 +44,25 @@ def dash(request):
 
 @login_required
 def employeelist(request):
-    return render(request, 'employee-list.html', {})
+    employees = Employee.objects.all()
+
+    context = {
+        'form': EmployeeModelForm,
+        'employees': employees,
+    }
+    return render(request, 'employee-list.html', context)
 
 
 class AddEmployeeView(LoginRequiredMixin, BSModalCreateView):
     template_name = 'add_employee.html'
     form_class = EmployeeModelForm
     success_message = 'Employee Added Successfully'
-    success_url = reverse_lazy('employeelist')
+    success_url = reverse_lazy('EmployeeMgt:employeelist')
+
+
+class EmployeeDetailView(LoginRequiredMixin, BSModalReadView):
+    model = Employee
+    template_name = 'employee_detail.html'
 
 
 @login_required

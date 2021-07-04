@@ -30,7 +30,7 @@
   									Your username and password did not match
 								</div>
 							{% endif %}
-    						<form method="post" action="{% url 'EmployeeMgt:login' %}">
+    						<form method="post" action="{% url 'EmployeeMgt:user_login' %}">
 
 								{{ form |crispy }}
 								{% csrf_token %}

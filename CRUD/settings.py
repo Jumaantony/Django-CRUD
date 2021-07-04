@@ -141,9 +141,8 @@ AUTHENTICATION_BACKENDS = (
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-LOGIN_REDIRECT_URL = 'EmployeeMgt:dash'
-LOGOUT_REDIRECT_URL = 'EmployeeMgt:login'
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'dash'
+LOGOUT_REDIRECT_URL = 'EmployeeMgt:user_login'
+
 
 
