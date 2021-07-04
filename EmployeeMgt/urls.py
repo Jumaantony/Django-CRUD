@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from .views import AddEmployeeView
 
 app_name = 'EmployeeMgt'
 
@@ -17,8 +16,6 @@ urlpatterns = [
     path('employeelist/', views.employeelist, name='employeelist'),
 
     path('joblist/', views.joblist, name='joblist'),
-
-    path('add_employee/', AddEmployeeView.as_view(), name='add_employee'),
 
     path('employee_detail/', views.EmployeeDetailView.as_view(), name='employee_detail'),
 
