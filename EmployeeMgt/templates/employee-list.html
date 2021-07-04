@@ -38,12 +38,11 @@
                   <td>{{ employee.Name }}</td>
                   <td>{{ employee.Email }}</td>
 
-                  <td><a href="{% url 'EmployeeMgt:employee_detail' %}" data-toggle="modal"
-                         data-target="#employee-details1"
-                         class="btn btn-info btn-sm btn-block"> Details </a></td>
-                  <td><a href="" data-toggle="modal" data-target="#employee-edit-details1" class="btn btn-warning btn-sm btn-block">Edit</a></td>
+                  <td><a href="" data-toggle="modal" data-target="#employee-details-{{ employee.pk }}" class="btn btn-info btn-sm btn-block"> Details </a></td>
 
-                  <td><a href="" class="btn btn-danger btn-sm btn-block" onclick="confirm('Are you Sure you want to Delete \' Antonio Jumio\' ?');">Delete</a></td>
+                  <td><a href="" data-toggle="modal" data-target="#employee-edit-{{ employee.pk }}" class="btn btn-warning btn-sm btn-block">Edit</a></td>
+
+                  <td><a href="" class="btn btn-danger btn-sm btn-block" onclick="confirm('Are you Sure you want to Delete \' {{ employee.Name }}\' ?');">Delete</a></td>
                 </tr>
               {% endfor %}
 
@@ -62,59 +61,59 @@
       </div>
     </div>
 
+    {% for employee in employees %}
+	    <!-- Details Modal -->
+		<div class="modal fade" id="employee-details-{{ employee.pk }}" tabindex="-1" aria-labelledby="employee-details-{{ employee.pk }}" aria-hidden="true">
+		    <div class="modal-dialog">
+		        {% include 'employee_detail.html' %}
+	    	</div>
+		</div>		
 
-    <!-- Details Modal -->
-    <div class="modal fade" id="employee-details1" tabindex="-1" aria-labelledby="employee-details1" aria-hidden="true">
-      <div class="modal-dialog">
-        {% include 'employee_detail.html' %}
-      </div>
-    </div>
 
+	     <!--Edit  Details Modal -->
+	    <div class="modal fade" id="employee-edit-{{ employee.pk }}" tabindex="-1" aria-labelledby="employee-edit-{{ employee.pk }}" aria-hidden="true">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	             	<div class="modal-header">
+	                	<h5 class="modal-title" id="exampleModalLabel">EDIT EMPLOYEE</h5>
+	                	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                  		<span aria-hidden="true">&times;</span>
+	                	</button>
+	              	</div>
+	              	<div class="modal-body">
 
-     <!--Edit  Details Modal -->
-    <div class="modal fade" id="employee-edit-details1" tabindex="-1" aria-labelledby="edit_employee"
-         aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">EDIT EMPLOYEE</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
+	                	<form>
+	                  		<div class="mb-3">
+	                    		<input type="text" name="" class="form-control form-control-sm" required value="{{ employee.Date_of_Employement }}">
+	                  		</div>
 
-                <form>
-                  <div class="mb-3">
-                    <input type="text" name="" class="form-control form-control-sm" required value="23 October 2020">
-                  </div>
+	                  		<div class="mb-3">
+	                    		<input type="text" name="" class="form-control form-control-sm" required value="{{ employee.Name }}">
+	                  		</div>
 
-                  <div class="mb-3">
-                    <input type="text" name="" class="form-control form-control-sm" required value="Antonio Jumio">
-                  </div>
+	                  		<div class="mb-3">
+	                    		<input type="email" name="" class="form-control form-control-sm"  required value="{{ employee.Email }}">
+	                  		</div>
 
-                  <div class="mb-3">
-                    <input type="email" name="" class="form-control form-control-sm"  required value="jumio@gmail.com">
-                  </div>
+	                  		<div class="mb-3">
+	                    		<input type="tel" name="" class="form-control form-control-sm"  required value="{{ employee.ID }}">
+	                  		</div>
 
-                  <div class="mb-3">
-                    <input type="tel" name="" class="form-control form-control-sm"  required value="985122871649846589465511688">
-                  </div>
+	                  		<div class="mb-3">
+	                    		<input type="tel" name="" class="form-control form-control-sm"  required value="{{ employee.Job }}">
+	                  		</div>
 
-                  <div class="mb-3">
-                    <input type="tel" name="" class="form-control form-control-sm"  required value="Web-designer">
-                  </div>
+	                  		<div class="mb-3">
+	                    		<button type="submit" class="btn btn-sm btn-success btn-block">Edit Employee Details</button>
+	                  		</div>
 
-                  <div class="mb-3">
-                    <button type="submit" class="btn btn-sm btn-success btn-block">Edit Employee Details</button>
-                  </div>
+	                	</form>
 
-                </form>
-
-              </div>
-            </div>
-          </div>
-        </div>
+	              	</div>
+	            </div>
+	        </div>
+	    </div>
+    {% endfor %}
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
