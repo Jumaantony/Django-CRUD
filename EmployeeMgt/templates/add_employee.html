@@ -1,9 +1,14 @@
 {% load static %}
 {% load widget_tweaks %}
 
-<!-- Bootstrap CSS for Django-bootstrap modal-forms -->
+
+<!-- 
+    You do not have to connect CSS files here, 1st because they are supposed to be in <head></head> not body tag
+    Plus You're using this template inside another template which already has these CSS files configured.
+-->
+<!-- Bootstrap CSS for Django-bootstrap modal-forms
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
 
 <form action="{% url 'EmployeeMgt:add_employee' %}" method="post">
     {% csrf_token %}

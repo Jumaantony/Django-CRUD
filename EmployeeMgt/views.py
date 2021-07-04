@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, EmployeeModelForm
 from django.contrib.auth.decorators import login_required
@@ -52,12 +52,17 @@ def employeelist(request):
     }
     return render(request, 'employee-list.html', context)
 
-
+# Employee details are saved using this view right here
 class AddEmployeeView(LoginRequiredMixin, BSModalCreateView):
-    template_name = 'add_employee.html'
+    template_name = ''
     form_class = EmployeeModelForm
-    success_message = 'Employee Added Successfully'
     success_url = reverse_lazy('EmployeeMgt:employeelist')
+
+    # I added this to raise a 404 error anytime you try to access this view in GET mode,
+    # it's only accessible to POST
+
+    def get(self, *args, **kwargs):
+        raise Http404
 
 
 class EmployeeDetailView(LoginRequiredMixin, BSModalReadView):
