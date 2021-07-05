@@ -20,6 +20,6 @@ urlpatterns = [
 
     path('add_employee/', AddEmployeeView.as_view(), name='add_employee'),
 
-    path('employee_detail/', views.EmployeeDetailView.as_view(), name='employee_detail'),
+    path('employee_detail/<int:pk>/', views.EmployeeDetailView.as_view(), name='employee_detail'),
 
 ]
