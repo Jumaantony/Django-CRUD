@@ -4,10 +4,8 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, EmployeeModelForm
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
-from django.views import generic
 from .models import Employee
-from bootstrap_modal_forms.generic import BSModalCreateView, BSModalReadView
+from bootstrap_modal_forms.generic import BSModalReadView
 
 
 # Create your views here.
@@ -44,20 +42,39 @@ def dash(request):
 
 @login_required
 def employeelist(request):
-    employees = Employee.objects.all()
+    context = {}
+    if request.method == 'GET':
+        context.update({
+            'form': EmployeeModelForm,
+            'employees': Employee.objects.all(),
+        })
+    elif request.method == 'POST':
+        form_ = EmployeeModelForm(request.POST)
 
-    context = {
-        'form': EmployeeModelForm,
-        'employees': employees,
-    }
+        if form_.is_valid():
+            form_.save()
+
+            context.update({
+                'form': EmployeeModelForm,
+                'employees': Employee.objects.all()
+            })
+        else:
+            # if a form has an error, it is returned with the same info!
+            context.update({
+                'form': form_,
+                'employees': Employee.objects.all(),
+                'error_saving': True
+            })
+
     return render(request, 'employee-list.html', context)
 
 
-class AddEmployeeView(LoginRequiredMixin, BSModalCreateView):
+"""class AddEmployeeView(LoginRequiredMixin, BSModalCreateView):
     template_name = 'add_employee.html'
     form_class = EmployeeModelForm
     success_message = 'Employee Added Successfully'
     success_url = reverse_lazy('EmployeeMgt:employeelist')
+"""
 
 
 class EmployeeDetailView(LoginRequiredMixin, BSModalReadView):
