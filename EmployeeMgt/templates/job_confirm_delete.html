@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card mx-auto mt-5" style="width: 60%;">
+    <div class="card-body">
+        <div class="card-title">
+            <h4>Confirm Delete</h4>
+    		<form method="POST">
+                {% csrf_token %}
+                <p>Are you sure you want to delete <span class="font-weight-bold">"{{ job.name }}"</span>?</p>
+
+                <div>
+                    <input class="btn btn-danger text-light font-weight-bold mr-4 mb-3" type="submit" value="Confirm">
+
+                    <a class="btn btn-primary font-weight-bold mb-3" href="{% url 'EmployeeMgt:joblist' %}">Go Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

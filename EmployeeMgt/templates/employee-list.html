@@ -53,7 +53,8 @@
                   <td><a href="" data-toggle="modal"
                          data-target="#employee-details-{{ employee.pk }}"
                          class="btn btn-info btn-sm btn-block"> Details </a></td>
-                  <td><a href="" data-toggle="modal" data-target="#employee-edit-details-{{ employee.pk }}" class="btn btn-warning btn-sm btn-block">Edit</a></td>
+
+                    <td><a href="" data-toggle="modal" data-target="#employee-edit-details-{{ employee.pk }}" class="btn btn-warning btn-sm btn-block">Edit</a></td>
 
                   <td><a href="" class="btn btn-danger btn-sm btn-block"
                          onclick="confirm('Are you Sure you want to Delete \' {{ employee.Name }} \' ?');">Delete</a></td>
@@ -85,8 +86,8 @@
 
 
          <!--Edit  Details Modal -->
-        <div class="modal fade" id="employee-edit-{{ employee.pk }}" tabindex="-1"
-             aria-labelledby="employee-edit-{{ employee.pk }}"
+        <div class="modal fade" id="employee-edit-details-{{ employee.pk }}" tabindex="-1"
+             aria-labelledby="employee-edit-details-{{ employee.pk }}"
              aria-hidden="true">
               <div class="modal-dialog">
                 {% include 'edit_details.html' %}
