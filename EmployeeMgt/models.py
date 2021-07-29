@@ -11,7 +11,7 @@ class Employee(models.Model):
     Name = models.CharField(max_length=50)
     Email = models.EmailField()
     Phone_Number = models.IntegerField()
-    Job = models.CharField(max_length=50)
+    Job = models.ForeignKey('Job', on_delete=models.CASCADE)
 
 
 class Job(models.Model):
@@ -20,3 +20,6 @@ class Job(models.Model):
                           editable=True)
     name = models.CharField(max_length=50)
     date = models.DateTimeField()
+
+    def __str__(self):
+        return self.name
