@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">EDIT EMPLOYEE</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                    <a class="text-decoration-none text-dark" href="{% url 'EmployeeMgt:employeelist' %}">
+                      &times;
+                    </a>
+                </span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            {{ form| crispy }}
+
+            <div class="mb-3 mt-3">
+                <button type="submit" value="Update" class="btn btn-sm btn-success btn-block" value="Update">Update
+                    Employee Details</button>
+            </div>
+
+    </div>
+    </div>
+
+</form>
+{% endblock%}

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy, reverse
-from django.views.generic import UpdateView, ListView, CreateView, DeleteView
+from django.views.generic import UpdateView, DetailView, ListView, CreateView, DeleteView
 from .forms import LoginForm, EmployeeModelForm, JobModelForm
 from django.contrib.auth.decorators import login_required
 from .models import Employee, Job
@@ -41,39 +41,39 @@ def dash(request):
     return render(request, 'dash.html', {})
 
 
-@login_required
-def employeelist(request):
-    context = {}
-    if request.method == 'GET':
-        context.update({
-            'form': EmployeeModelForm,
-            'employees': Employee.objects.all(),
-        })
-    elif request.method == 'POST':
-        form_ = EmployeeModelForm(request.POST)
-
-        if form_.is_valid():
-            form_.save()
-
-            context.update({
-                'form': EmployeeModelForm,
-                'employees': Employee.objects.all()
-            })
-        else:
-            # if a form has an error, it is returned with the same info!
-            context.update({
-                'form': form_,
-                'employees': Employee.objects.all(),
-                'error_saving': True})
-
-    return render(request, 'employee-list.html', context)
-
-
-class EditEmployee(UpdateView):
+class EmployeeList(LoginRequiredMixin, ListView):
     model = Employee
-    form_class = EmployeeModelForm
-    template_name = "edit_details.html"
-    success_url = "EmployeeMgt:employeelist"
+    template_name = 'employee-list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = EmployeeModelForm()
+        return context
+
+    def post(self, request):
+        form = EmployeeModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('EmployeeMgt:employeelist')
+
+
+class EmployeeDetail(LoginRequiredMixin, DetailView):
+    model = Employee
+    template_name = 'employee_detail.html'
+
+
+class EditEmployee(LoginRequiredMixin, UpdateView):
+    model = Employee
+    template_name = 'edit_employee.html'
+    template_name_suffix = '_update_form'
+    fields = '__all__'
+    success_url = reverse_lazy('EmployeeMgt:employeelist')
+
+
+def delete_employee(request, pk):
+    employee = Employee.objects.get(pk=pk)
+    employee.delete()
+    return redirect('EmployeeMgt:employeelist')
 
 
 class JobList(LoginRequiredMixin, ListView):

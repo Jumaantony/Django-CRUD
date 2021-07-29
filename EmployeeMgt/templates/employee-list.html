@@ -44,20 +44,20 @@
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
-              {% for employee in employees %}
+              {% for employee in object_list %}
                 <tr>
                   <td>{{ employee.ID }}</td>
                   <td>{{ employee.Name }}</td>
                   <td>{{ employee.Email }}</td>
 
-                  <td><a href="" data-toggle="modal"
-                         data-target="#employee-details-{{ employee.pk }}"
+                  <td><a href="{% url 'EmployeeMgt:employee_detail' employee.pk %}"
                          class="btn btn-info btn-sm btn-block"> Details </a></td>
 
-                    <td><a href="" data-toggle="modal" data-target="#employee-edit-details-{{ employee.pk }}" class="btn btn-warning btn-sm btn-block">Edit</a></td>
+                    <td><a href="{% url 'EmployeeMgt:edit_employee' employee.pk %}"
+                           class="btn btn-warning btn-sm btn-block">Edit</a></td>
 
-                  <td><a href="" class="btn btn-danger btn-sm btn-block"
-                         onclick="confirm('Are you Sure you want to Delete \' {{ employee.Name }} \' ?');">Delete</a></td>
+                  <td><a href="{% url 'EmployeeMgt:delete_employee' employee.pk %}"
+                         class="btn btn-danger btn-sm btn-block">Delete</a></td>
                 </tr>
               {% endfor %}
 
@@ -76,25 +76,6 @@
       </div>
     </div>
 
-    {% for employee in employees %}
-        <!-- Details Modal -->
-        <div class="modal fade" id="employee-details-{{ employee.pk }}" tabindex="-1" aria-labelledby="employee-details-{{ employee.pk }}" aria-hidden="true">
-          <div class="modal-dialog">
-            {% include 'employee_detail.html' %}
-          </div>
-        </div>
-
-
-         <!--Edit  Details Modal -->
-        <div class="modal fade" id="employee-edit-details-{{ employee.pk }}" tabindex="-1"
-             aria-labelledby="employee-edit-details-{{ employee.pk }}"
-             aria-hidden="true">
-              <div class="modal-dialog">
-                {% include 'edit_details.html' %}
-              </div>
-            </div>
-
-    {% endfor %}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script> 
