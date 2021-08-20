@@ -33,7 +33,7 @@ def user_login(request):
 
 def logout_view(request):
     logout(request)
-    return render(request, 'registration/login.html')
+    return render(request, 'registration/logout.html')
 
 
 @login_required

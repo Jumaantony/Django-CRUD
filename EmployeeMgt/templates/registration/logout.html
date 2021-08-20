@@ -23,14 +23,11 @@
     					<div class="card-title">
     						<h4>Login as Admin</h4>
     						<p class="card-text small text-muted">
-    							Login with username & password
+    							Thank you For Visiting this site.
     						</p>
-    						<form method="post">
+								<a href="{% url 'EmployeeMgt:user_login'%}"
+								   class="btn btn-sm btn-success btn-block mb-3">Sign	in Again</a>
 
-								{{ form |crispy }}
-								{% csrf_token %}
-
-                                <input class="btn btn-sm btn-success btn-block mb-3 mt-3" type="submit" value="Sign in">
     						</form>
     					</div>
     				</div>
