@@ -36,8 +36,9 @@
               <a class="nav-link" href="{% url 'EmployeeMgt:joblist' %}">Jobs</a>
             </li>
           </ul>
-          <form class="d-flex mb-2">
-            <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex mb-2" method = "GET" action="{% url 'EmployeeMgt:search' %}">
+            {% csrf_token %}
+            <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" name="search_query">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
 

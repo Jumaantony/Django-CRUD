@@ -29,5 +29,7 @@ urlpatterns = [
     # path('edit_job/<pk>/', views.editjob, name='edit_job'),
 
     # path('delete_job/<pk>/', DeleteJob.as_view(), name='delete_job'),
-    path('delete_job/<pk>/', views.deletejob, name='delete_job')
+    path('delete_job/<pk>/', views.deletejob, name='delete_job'),
+
+    path('search/', views.search, name='search'),
 ]

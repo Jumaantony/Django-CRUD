@@ -17,3 +17,7 @@ class JobModelForm(forms.ModelForm):
     class Meta:
         model = Job
         fields = '__all__'
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField

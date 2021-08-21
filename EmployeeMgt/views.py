@@ -1,11 +1,15 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from itertools import chain
+
 from django.contrib.auth import authenticate, login, logout
-from django.urls import reverse_lazy, reverse
-from django.views.generic import UpdateView, DetailView, ListView, CreateView, DeleteView
-from .forms import LoginForm, EmployeeModelForm, JobModelForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.postgres.search import SearchVector
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView, DetailView, ListView, CreateView
+
+from .forms import LoginForm, EmployeeModelForm, JobModelForm
 from .models import Employee, Job
 
 
@@ -63,7 +67,6 @@ class EmployeeList(LoginRequiredMixin, ListView):
             return redirect('EmployeeMgt:employeelist')
 
 
-
 class EmployeeDetail(LoginRequiredMixin, DetailView):
     model = Employee
     template_name = 'employee_detail.html'
@@ -77,7 +80,7 @@ class EditEmployee(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('EmployeeMgt:employeelist')
 
 
-def delete_employee(request, pk):
+def delete_employee(pk):
     employee = Employee.objects.get(pk=pk)
     employee.delete()
     return redirect('EmployeeMgt:employeelist')
@@ -103,11 +106,32 @@ class EditJob(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('EmployeeMgt:joblist')
 
 
-def deletejob(request, pk):
+def deletejob(pk):
     job = Job.objects.get(pk=pk)
     job.delete()
     return redirect('EmployeeMgt:joblist')
 
+
+def search(request):
+    if request.method == 'GET':
+        query = request.GET['search_query']
+        search_results = Employee.objects.annotate(
+            search=SearchVector('Name', 'Email', 'Phone_Number'),
+        ).filter(search=query)
+
+        search_results2 = Job.objects.annotate(
+            search=SearchVector('name'),
+        ).filter(search=query)
+
+        total_result = len(list(chain(search_results, search_results2)))
+
+        context = {
+            'search_results': search_results,
+            'search_results2': search_results2,
+            'total_result': total_result,
+        }
+
+        return render(request, 'search.html', context)
 
 """
 # delete view with the confirm delete in a different page

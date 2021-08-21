@@ -13,6 +13,9 @@ class Employee(models.Model):
     Phone_Number = models.IntegerField()
     Job = models.ForeignKey('Job', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.Name
+
 
 class Job(models.Model):
     id = models.UUIDField(primary_key=True,

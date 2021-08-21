@@ -6,8 +6,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-<div class="modal-dialog">
-    <form method="POST">
+<form method="POST">
     {% csrf_token %}
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h5>
@@ -25,4 +24,3 @@
 
     </div>
 </form>
-</div>

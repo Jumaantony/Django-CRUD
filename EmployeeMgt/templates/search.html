@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% if total_result %}
+        <h2>Query containing '{{search}}'</h2>
+        <h3>
+            {% with total_result as total_total_results %}
+                Found {{ total_total_results }} result {{ total_total_results|pluralize }}
+            {% endwith %}
+        </h3>
+        {% if search_results %}
+            {% for employee in search_results %}
+                <div class="container">
+                    <h4>
+                        <a href="{% url 'EmployeeMgt:employee_detail' employee.pk %}"
+                           class="text-decoration-none fw-bold">
+                            {{ employee.Name }}
+                        </a>
+                    </h4>
+                    <div class="table-responsive mb-3">
+                        <table class="table table-striped table-hover bg-light">
+                    <tr class="table-dark ">
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Email-ID</th>
+                      <th>Details</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+
+                    <tr>
+                      <td>{{ employee.ID }}</td>
+                      <td>{{ employee.Name }}</td>
+                      <td>{{ employee.Email }}</td>
+
+                      <td><a href="{% url 'EmployeeMgt:employee_detail' employee.pk %}"
+                             class="btn btn-info btn-sm btn-block"> Details </a></td>
+
+                        <td><a href="{% url 'EmployeeMgt:edit_employee' employee.pk %}"
+                               class="btn btn-warning btn-sm btn-block">Edit</a></td>
+
+                      <td><a href="{% url 'EmployeeMgt:delete_employee' employee.pk %}"
+                             class="btn btn-danger btn-sm btn-block">Delete</a></td>
+                    </tr>
+
+                  </table>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            {% for job in search_results2 %}
+                <h4>
+                    {{ job.name }}
+                </h4>
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        <p>Please search again. No result found for <b>"{{query}}"</b>.</p>
+    {% endif %}
+    </div>
+
+{% endblock %}
