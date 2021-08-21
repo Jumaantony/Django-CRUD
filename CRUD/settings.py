@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import django_heroku
 import dj_database_url
 from decouple import config
 
@@ -26,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-iyoz-2q@5gb9pw%+l7k2xc2@ka#*r+&jj4u^vrykjgjinll%z8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -156,6 +157,6 @@ LOGIN_REDIRECT_URL = 'dash'
 LOGOUT_REDIRECT_URL = 'user_login'
 LOGIN_URL = 'user_login'
 
-
+django_heroku.settings(locals())
 
 
