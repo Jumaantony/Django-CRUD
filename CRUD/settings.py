@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-import django_heroku
 import dj_database_url
 from decouple import config
 
@@ -157,6 +156,6 @@ LOGIN_REDIRECT_URL = 'dash'
 LOGOUT_REDIRECT_URL = 'user_login'
 LOGIN_URL = 'user_login'
 
-django_heroku.settings(locals())
+
 
 
