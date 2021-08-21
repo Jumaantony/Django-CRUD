@@ -6,7 +6,7 @@
 
 <div class="container">
     {% if total_result %}
-        <h2>Query containing '{{search}}'</h2>
+        <h2>Query containing '{{ search }}'</h2>
         <h3>
             {% with total_result as total_total_results %}
                 Found {{ total_total_results }} result {{ total_total_results|pluralize }}
@@ -53,9 +53,32 @@
             {% endfor %}
         {% else %}
             {% for job in search_results2 %}
-                <h4>
-                    {{ job.name }}
-                </h4>
+                <div class="container">
+                    <h4>
+                        {{ job.name }}
+                    </h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover bg-light">
+                            <tr class="table-dark ">
+                          <th>ID</th>
+                          <th>Job Name</th>
+                          <th>Date Added</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                            <tr>
+                            <td>{{ job.id }}</td>
+                            <td>{{ job.name }}</td>
+                            <td>{{ job.date }}</td>
+                            <td><a href="{% url 'EmployeeMgt:edit_job' job.pk %}"
+                                   class="btn btn-warning btn-sm btn-block">Edit
+                            </a></td>
+                            <td><a href="{% url 'EmployeeMgt:delete_job' job.pk %}" class="btn btn-danger btn-sm btn-block"
+                                   onclick="confirm('Are you Sure you want to Delete \' {{ job.name }} \' ?');">Delete</a></td>
+                          </tr>
+                        </table>
+                    </div>
+                </div>
             {% endfor %}
         {% endif %}
     {% else %}
