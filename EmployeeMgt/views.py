@@ -63,6 +63,7 @@ class EmployeeList(LoginRequiredMixin, ListView):
             return redirect('EmployeeMgt:employeelist')
 
 
+
 class EmployeeDetail(LoginRequiredMixin, DetailView):
     model = Employee
     template_name = 'employee_detail.html'
