@@ -80,7 +80,7 @@ class EditEmployee(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('EmployeeMgt:employeelist')
 
 
-def delete_employee(pk):
+def delete_employee(request, pk):
     employee = Employee.objects.get(pk=pk)
     employee.delete()
     return redirect('EmployeeMgt:employeelist')
@@ -106,7 +106,7 @@ class EditJob(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('EmployeeMgt:joblist')
 
 
-def deletejob(pk):
+def deletejob(request, pk):
     job = Job.objects.get(pk=pk)
     job.delete()
     return redirect('EmployeeMgt:joblist')
