@@ -38,7 +38,13 @@ def logout_view(request):
 
 @login_required
 def dash(request):
-    return render(request, 'dash.html', {})
+    job_count = Job.objects.count()
+    employee_count = Employee.objects.count()
+
+    return render(request, 'dash.html', {
+        'job_count': job_count,
+        'employee_count': employee_count,
+    })
 
 
 class EmployeeList(LoginRequiredMixin, ListView):
