@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'crispy_forms',
-    'widget_tweaks'
+    'widget_tweaks',
+    'phonenumber_field',
+    'phonenumbers',
 ]
 
 # crispy forms
@@ -157,5 +159,3 @@ LOGOUT_REDIRECT_URL = 'user_login'
 LOGIN_URL = 'user_login'
 
 django_heroku.settings(locals())
-
-

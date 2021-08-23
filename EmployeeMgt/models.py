@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 # Create your models here.
@@ -10,7 +11,7 @@ class Employee(models.Model):
     Date_of_Employement = models.DateTimeField()
     Name = models.CharField(max_length=50)
     Email = models.EmailField()
-    Phone_Number = models.IntegerField()
+    Phone_Number = PhoneNumberField()
     Job = models.ForeignKey('Job', on_delete=models.CASCADE)
 
     def __str__(self):
