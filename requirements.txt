@@ -6,6 +6,7 @@ Django==3.2.6
 django-crispy-forms==1.11.2
 django-heroku==0.3.1
 django-modelcluster==5.1
+django-phonenumber-field==5.2.0
 django-taggit==1.5.1
 django-treebeard==4.5.1
 django-widget-tweaks==1.4.8
@@ -14,6 +15,7 @@ gunicorn==20.1.0
 html5lib==1.1
 idna==2.10
 l18n==2020.6.1
+phonenumbers==8.12.30
 psycopg2==2.9.1
 psycopg2-binary==2.9.1
 pycodestyle==2.7.0
